@@ -7,6 +7,8 @@ columns = [1, 5, 6, 8, 11, 12, 20, 24, 25];
 load("D:\FYP\Datasets\dataset2\VP025-NIRS\cnt_nback.mat");
 load("D:\FYP\Datasets\dataset2\VP025-NIRS\mrk_nback.mat");
 time = mrk_nback.time(1,:);
+numDataPoints = diff([0, time]) / 100; % Sampling rate is 10 Hz and time is in miliseconds (divide by 1000 and multiply by 10)
+numDataPoints
 for col = columns
      %Load
     
@@ -20,7 +22,6 @@ for col = columns
     
     
     % Calculate the number of data points in each session
-    numDataPoints = diff([0, time]) / 100; % Sampling rate is 10 Hz and time is in miliseconds (divide by 1000 and multiply by 10)
     
     % Normalize the data
     normalizedData = (data - mean(data)) / std(data);
